@@ -1,0 +1,49 @@
+{
+  "name": "provably-fair-framework",
+  "version": "1.0.0",
+  "description": "Provably Fair Framework",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "build": "yarn clean && tsc",
+    "dev": "tsc -w",
+    "lint": "eslint --ext .ts src/",
+    "docs": "typedoc --tsconfig ./tsconfig.json --out ./docs",
+    "docs:serve": "./node_modules/.bin/serve ./docs",
+    "examples": "DEBUG=provably-fair:* NODE_ENV=examples node -r ./node_modules/ts-node/register/transpile-only ./examples/index.ts",
+    "prepare": "yarn build",
+    "prepublishOnly": "yarn test && yarn lint",
+    "preversion": "yarn lint",
+    "version": "git add -A src",
+    "postversion": "git push && git push --tags",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthewlilley/provably-fair-framework.git"
+  },
+  "keywords": [
+    "provably fair"
+  ],
+  "author": "Matthew Lilley",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "debug": "^4.1.0",
+    "isomorphic-unfetch": "^3.0.0",
+    "random-number-csprng": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.0",
+    "@types/node": "^13.7.4",
+    "@typescript-eslint/eslint-plugin": "^2.20.0",
+    "@typescript-eslint/parser": "^2.3.1",
+    "eslint": "^6.8.0",
+    "prettier": "^1.19.1",
+    "serve": "^11.3.0",
+    "ts-node": "^8.6.0",
+    "typedoc": "^0.16.0",
+    "typescript": "^3.8.0"
+  }
+}
