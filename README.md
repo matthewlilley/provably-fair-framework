@@ -123,3 +123,15 @@ system.proofOfCommitment();
 system.setProofOfCommitment(new CustomProofOfCommitment());
 system.proofOfCommitment();
 ```
+
+## Docs
+
+https://matthewlilley.github.io/provably-fair-framework/
+
+## Contributing
+
+Want to contribute? Awesome! Feel free to create an issue and/or pull request.
+
+## Licence
+
+MIT
