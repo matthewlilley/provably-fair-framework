@@ -9,8 +9,8 @@ export function randomSequence(
   clientSeed: string,
   array: number[]
 ): number[] {
-  const n = array.length;
-  for (let i = 0; i <= n - 2; i++) {
+  const n = array.length - 1;
+  for (let i = 0; i <= n; i++) {
     const j = randomInteger(
       algorithm,
       [serverSeed, clientSeed + ':' + i],

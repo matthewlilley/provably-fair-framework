@@ -1,6 +1,6 @@
 {
   "name": "provably-fair-framework",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Provably Fair Framework",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -42,7 +42,7 @@
     "eslint": "^6.8.0",
     "prettier": "^1.19.1",
     "serve": "^11.3.0",
-    "ts-node": "^8.6.0",
+    "ts-node": "^8.6.2",
     "typedoc": "^0.16.0",
     "typescript": "^3.8.0"
   }

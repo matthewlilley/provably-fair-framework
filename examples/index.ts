@@ -79,14 +79,15 @@ const run = async () => {
     // log('512 distributions', distribute(createHmac('sha512', serverSeed).update(clientSeed).digest('hex')));
 
     // randomSequence
-
     const sequence = randomSequence(
       'sha256',
       serverSeed,
       clientSeed,
       Array.from(Array(52).keys())
     );
+
     debug('randomSequence', sequence);
+    debug('randomSequence length', sequence.length);
 
     // randomInteger
     const integer = randomInteger('sha256', [serverSeed, clientSeed], 0, 100);
