@@ -9,7 +9,7 @@
     "build": "yarn clean && tsc",
     "dev": "tsc -w",
     "lint": "eslint --ext .ts src/",
-    "docs": "typedoc --excludeNotExported --excludePrivate --tsconfig ./tsconfig.json --out ./docs && touch docs/.nojekyll",
+    "docs": "typedoc --excludeNotExported --excludePrivate --mode file --tsconfig ./tsconfig.json --out ./docs && touch docs/.nojekyll",
     "docs:serve": "./node_modules/.bin/serve ./docs",
     "examples": "DEBUG=provably-fair:* NODE_ENV=examples node -r ./node_modules/ts-node/register/transpile-only",
     "prepare": "yarn build",
