@@ -1,6 +1,6 @@
 {
   "name": "provably-fair-framework",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Provably Fair Framework",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
