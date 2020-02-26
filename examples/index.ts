@@ -16,7 +16,7 @@ import { createHmac } from 'crypto';
 
 const debug = Debug('provably-fair:examples');
 
-const run = async () => {
+(async () => {
   try {
     const config: Config = {
       algorithm: 'sha256',
@@ -122,6 +122,4 @@ const run = async () => {
   } catch (error) {
     debug('Provably fair system error!', error);
   }
-};
-
-run();
+})();

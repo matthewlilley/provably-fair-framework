@@ -1,5 +1,8 @@
-import { BinaryLike, createHash, getHashes, randomBytes } from 'crypto';
 import {
+  AmericanRoulette,
+  Crash,
+  Dice,
+  EuropeanRoulette,
   ProofOfCommitment,
   ProofOfExistence,
   SeedingEvent,
@@ -7,6 +10,7 @@ import {
   StrategyConstructor,
   createStrategy,
 } from '..';
+import { BinaryLike, createHash, getHashes, randomBytes } from 'crypto';
 
 import debug from 'debug';
 import fetch from 'isomorphic-unfetch';
@@ -60,6 +64,11 @@ export interface System {
   setStrategy(strategy: string | (Strategy | StrategyConstructor)): System;
 }
 
+const defaultConfig: Config = {
+  algorithm: 'sha256',
+  strategies: [AmericanRoulette, Crash, Dice, EuropeanRoulette],
+};
+
 export class System implements System {
   algorithm: Algorithm = 'sha256';
 
@@ -68,13 +77,13 @@ export class System implements System {
   strategy: Strategy;
 
   constructor({
-    algorithm,
+    algorithm = 'sha256',
     proofOfCommitment,
     proofOfExistence,
     seedingEvent,
-    strategies,
+    strategies = [AmericanRoulette, Crash, Dice, EuropeanRoulette],
     strategy,
-  }: Config) {
+  }: Config = defaultConfig) {
     if (algorithm && !getHashes().includes(algorithm)) {
       throw new Error(
         `${algorithm} is not a supported hash algorithm on this system.`
@@ -239,4 +248,5 @@ export class System implements System {
   }
 }
 
-export const createSystem = (config: Config): System => new System(config);
+export const createSystem = (config: Config = defaultConfig): System =>
+  new System(config);

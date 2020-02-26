@@ -2,45 +2,24 @@
 
 This library aims to provide a flexible but thorough provably fair framework.
 
-## Algorithms
+## Hash Algorithms
 
+Accepted Hash Algorithms are sha256 and sha512. Default is sha256.
+
+## Random Algorithms
+
+### Random Integer
 randomInteger(algorithm, inputs, min, max)
 
+### Random Sequence (Fisher–Yates shuffle)
 randomSequence(algorithm, inputs, array)
 
-## Strategies (included)
+## Strategies
 
 - Crash
 - Dice
 - American Roulette
 - European Roulette
-
-## Hash Functions
-
-Accepted Hash Functions are currently sha256 and sha512.
-
-## Seeding Event
-
-"A provably fair seeding event makes it possible to
-generate publicSeed using a trustless randomization service (e.g. the hash
-of a specific upcoming block in the blockchain of a cryptocurrency), disallowing participants to have a direct influence on in-game randomization"
-
-### Proof of Commitment
-
-The default proof of commitment strategy is as follows:
-
-Take an initial Server Seed (it could be a private key of Bitcoin wallet) and recusively sha256 hash it 10,000,000 times.
-
-You can set your own custom Proof of Commitment strategy.
-
-### Proof of Existence
-
-The default proof of existence strategy is as follows:
-
-Broadcast via the Blockstream Satellite API a message containing the
-Terminating Hash, and chosen Block Height of future block. The blockhash of this will be used as a client seed.
-
-You can set your own custom Proof of Existence strategy.
 
 ## Usage
 
@@ -57,7 +36,7 @@ import {
   randomInteger,
   randomSequence,
   System
-} from "..";
+} from "provably-fair-framework";
 
 // Default config
 const config: Config = {
@@ -123,6 +102,45 @@ system.proofOfCommitment();
 system.setProofOfCommitment(new CustomProofOfCommitment());
 system.proofOfCommitment();
 ```
+
+# Exampes
+
+```bash
+git clone https://github.com/matthewlilley/provably-fair-framework.git
+
+cd provably-fair-framework
+
+npm install
+
+npm run examples ./examples/calculate.ts
+```
+
+## Seeding Event (Optional)
+
+"A provably fair seeding event makes it possible to
+generate publicSeed using a trustless randomization service (e.g. the hash
+of a specific upcoming block in the blockchain of a cryptocurrency), disallowing participants to have a direct influence on in-game randomization"
+
+You can optionally use a seeding event to generate a public seed, a seeding event generally consists of two functions, Proof of Commitment and Proof of Existence.
+
+You can set your own custom Seeding Event Strategy, a default one is included.
+
+### Proof of Commitment
+
+The default proof of commitment strategy is as follows:
+
+Take an initial Server Seed (it could be a private key of Bitcoin wallet) and recusively sha256 hash it 10,000,000 times.
+
+You can set your own custom Proof of Commitment strategy.
+
+### Proof of Existence
+
+The default proof of existence strategy is as follows:
+
+Broadcast via the Blockstream Satellite API a message containing the
+Terminating Hash, and chosen Block Height of future block. The blockhash of this will be used as a client seed.
+
+You can set your own custom Proof of Existence strategy.
 
 ## Docs
 

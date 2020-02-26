@@ -40,8 +40,6 @@
 							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
 							<input type="checkbox" id="tsd-filter-externals" checked />
 							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
-							<input type="checkbox" id="tsd-filter-only-exported" />
-							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
 						</div>
 					</div>
 					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
@@ -68,13 +66,23 @@
 					<h1>Provably Fair Framework</h1>
 				</a>
 				<p>This library aims to provide a flexible but thorough provably fair framework.</p>
-				<a href="#algorithms" id="algorithms" style="color: inherit; text-decoration: none;">
-					<h2>Algorithms</h2>
+				<a href="#hash-algorithms" id="hash-algorithms" style="color: inherit; text-decoration: none;">
+					<h2>Hash Algorithms</h2>
+				</a>
+				<p>Accepted Hash Algorithms are sha256 and sha512. Default is sha256.</p>
+				<a href="#random-algorithms" id="random-algorithms" style="color: inherit; text-decoration: none;">
+					<h2>Random Algorithms</h2>
+				</a>
+				<a href="#random-integer" id="random-integer" style="color: inherit; text-decoration: none;">
+					<h3>Random Integer</h3>
 				</a>
 				<p>randomInteger(algorithm, inputs, min, max)</p>
+				<a href="#random-sequence-fisheryates-shuffle" id="random-sequence-fisheryates-shuffle" style="color: inherit; text-decoration: none;">
+					<h3>Random Sequence (Fisher–Yates shuffle)</h3>
+				</a>
 				<p>randomSequence(algorithm, inputs, array)</p>
-				<a href="#strategies-included" id="strategies-included" style="color: inherit; text-decoration: none;">
-					<h2>Strategies (included)</h2>
+				<a href="#strategies" id="strategies" style="color: inherit; text-decoration: none;">
+					<h2>Strategies</h2>
 				</a>
 				<ul>
 					<li>Crash</li>
@@ -82,29 +90,6 @@
 					<li>American Roulette</li>
 					<li>European Roulette</li>
 				</ul>
-				<a href="#hash-functions" id="hash-functions" style="color: inherit; text-decoration: none;">
-					<h2>Hash Functions</h2>
-				</a>
-				<p>Accepted Hash Functions are currently sha256 and sha512.</p>
-				<a href="#seeding-event" id="seeding-event" style="color: inherit; text-decoration: none;">
-					<h2>Seeding Event</h2>
-				</a>
-				<p>&quot;A provably fair seeding event makes it possible to
-					generate publicSeed using a trustless randomization service (e.g. the hash
-				of a specific upcoming block in the blockchain of a cryptocurrency), disallowing participants to have a direct influence on in-game randomization&quot;</p>
-				<a href="#proof-of-commitment" id="proof-of-commitment" style="color: inherit; text-decoration: none;">
-					<h3>Proof of Commitment</h3>
-				</a>
-				<p>The default proof of commitment strategy is as follows:</p>
-				<p>Take an initial Server Seed (it could be a private key of Bitcoin wallet) and recusively sha256 hash it 10,000,000 times.</p>
-				<p>You can set your own custom Proof of Commitment strategy.</p>
-				<a href="#proof-of-existence" id="proof-of-existence" style="color: inherit; text-decoration: none;">
-					<h3>Proof of Existence</h3>
-				</a>
-				<p>The default proof of existence strategy is as follows:</p>
-				<p>Broadcast via the Blockstream Satellite API a message containing the
-				Terminating Hash, and chosen Block Height of future block. The blockhash of this will be used as a client seed.</p>
-				<p>You can set your own custom Proof of Existence strategy.</p>
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>Usage</h2>
 				</a>
@@ -120,7 +105,7 @@
   randomInteger,
   randomSequence,
   System
-} <span class="hljs-keyword">from</span> <span class="hljs-string">".."</span>;
+} <span class="hljs-keyword">from</span> <span class="hljs-string">"provably-fair-framework"</span>;
 
 <span class="hljs-comment">// Default config</span>
 <span class="hljs-keyword">const</span> config: Config = {
@@ -185,6 +170,49 @@ system.proofOfCommitment();
 <span class="hljs-comment">// Set custom proof of commitment programatically</span>
 system.setProofOfCommitment(<span class="hljs-keyword">new</span> CustomProofOfCommitment());
 system.proofOfCommitment();</code></pre>
+				<a href="#exampes" id="exampes" style="color: inherit; text-decoration: none;">
+					<h1>Exampes</h1>
+				</a>
+				<pre><code class="language-bash">git <span class="hljs-built_in">clone</span> https://github.com/matthewlilley/provably-fair-framework.git
+
+<span class="hljs-built_in">cd</span> provably-fair-framework
+
+npm install
+
+npm run examples ./examples/calculate.ts</code></pre>
+				<a href="#seeding-event-optional" id="seeding-event-optional" style="color: inherit; text-decoration: none;">
+					<h2>Seeding Event (Optional)</h2>
+				</a>
+				<p>&quot;A provably fair seeding event makes it possible to
+					generate publicSeed using a trustless randomization service (e.g. the hash
+				of a specific upcoming block in the blockchain of a cryptocurrency), disallowing participants to have a direct influence on in-game randomization&quot;</p>
+				<p>You can optionally use a seeding event to generate a public seed, a seeding event generally consists of two functions, Proof of Commitment and Proof of Existence.</p>
+				<p>You can set your own custom Seeding Event Strategy, a default one is included.</p>
+				<a href="#proof-of-commitment" id="proof-of-commitment" style="color: inherit; text-decoration: none;">
+					<h3>Proof of Commitment</h3>
+				</a>
+				<p>The default proof of commitment strategy is as follows:</p>
+				<p>Take an initial Server Seed (it could be a private key of Bitcoin wallet) and recusively sha256 hash it 10,000,000 times.</p>
+				<p>You can set your own custom Proof of Commitment strategy.</p>
+				<a href="#proof-of-existence" id="proof-of-existence" style="color: inherit; text-decoration: none;">
+					<h3>Proof of Existence</h3>
+				</a>
+				<p>The default proof of existence strategy is as follows:</p>
+				<p>Broadcast via the Blockstream Satellite API a message containing the
+				Terminating Hash, and chosen Block Height of future block. The blockhash of this will be used as a client seed.</p>
+				<p>You can set your own custom Proof of Existence strategy.</p>
+				<a href="#docs" id="docs" style="color: inherit; text-decoration: none;">
+					<h2>Docs</h2>
+				</a>
+				<p><a href="https://matthewlilley.github.io/provably-fair-framework/">https://matthewlilley.github.io/provably-fair-framework/</a></p>
+				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
+					<h2>Contributing</h2>
+				</a>
+				<p>Want to contribute? Awesome! Feel free to create an issue and/or pull request.</p>
+				<a href="#licence" id="licence" style="color: inherit; text-decoration: none;">
+					<h2>Licence</h2>
+				</a>
+				<p>MIT</p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
