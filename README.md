@@ -60,12 +60,12 @@ const [serverSeed, clientSeed] = await system.createSeedPair();
 
 // A dice strategy
 system.setStrategy(Dice);
-const dice = system.calculate(serverSeed, clientSeed);
+const dice = system.calculate([serverSeed, clientSeed]);
 console.log(dice); // 1-6
 
 // A european roulette example
 system.setStrategy(EuropeanRoulette);
-const roulette = system.calculate(serverSeed, clientSeed);
+const roulette = system.calculate([serverSeed, clientSeed]);
 console.log(roulette); // 0-36
 
 // A custom roulette example
@@ -78,7 +78,7 @@ class CustomRoulette implements StrategyInterface {
 // Set custom strategy programatically
 system.setStrategy(new CustomRouletteStrategy());
 
-const roulette = system.calculate(serverSeed, clientSeed);
+const roulette = system.calculate([serverSeed, clientSeed]);
 console.log(roulette); // 0-15
 
 // default seeding event
