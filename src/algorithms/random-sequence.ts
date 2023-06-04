@@ -7,7 +7,7 @@ export function randomSequence(
   algorithm: string,
   serverSeed: string,
   clientSeed: string,
-  array: number[]
+  array: any[]
 ): number[] {
   const n = array.length - 1;
   for (let i = 0; i < n; i++) {
